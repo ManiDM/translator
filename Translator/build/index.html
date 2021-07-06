@@ -1,0 +1,524 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+	<title>Translator</title>
+    <link rel = "icon" href = "https://img.icons8.com/pastel-glyph/256/000000/translation.png" type = "image/x-icon">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<style>
+	.b1{
+		display: inline-block;
+		text-decoration: none;
+		border: none;
+		color: #34a853;
+		background: #cee9d6;
+		width: 50px;
+		height: 50px;
+		line-height: 40px;
+		border-radius: 50%;
+		text-align: center;
+		vertical-align: middle;
+		overflow: hidden;
+		transition: .4s;
+	}
+	.b2{
+		display: inline-block;
+		text-decoration: none;
+		border: none;
+		color:#4286f5;
+		background: #d2e4fc;
+		width: 50px;
+		height: 50px;
+		line-height: 40px;
+		border-radius: 50%;
+		text-align: center;
+		vertical-align: middle;
+		overflow: hidden;
+		transition: .4s;
+	}
+	.b1:hover{
+		background:	#90EE90
+	}
+	.b2:hover{
+		background:	#87CEFA
+	}
+	.mic{
+		display: inline-block;
+		text-decoration: none;
+		color: #787878;
+		overflow: hidden;
+		transition: .4s;
+		position:absolute;
+		margin-left: 0pt;
+		margin-top: 7%;
+		font-size: 25px;
+	}
+	.mic:c{
+		color: #160b0b;
+	}
+	.content_copy{
+		display: inline-block;
+		text-decoration: none;
+		color: #787878;
+		overflow: hidden;
+		transition: .4s;
+		position:absolute;
+		vertical-align: middle;
+		margin-left: 93%;
+		margin-top: 7%;
+		font-size: 20px;
+	}
+	.content_copy:hover{
+		color: #160b0b;
+	}
+	.volume_up{
+		display: inline-block;
+		text-decoration: none;
+		color: #787878;
+		overflow: hidden;
+		transition: .4s;
+		position:absolute;
+		vertical-align: middle;
+		margin-left: 90.4%;
+		margin-top: 7%;
+		font-size: 25px;
+	}
+	.volume_up:hover{
+		color: #160b0b;
+	}
+	textarea {
+			resize: none; 
+	}
+    textarea:focus {
+		border: 1px solid #4285F4;
+	}
+	</style>
+</head>
+<body>
+    <header>
+        <div class="bg-light d-flex" style=" height:50px; margin-left:20px; margin-top:15px;">
+            <img src="/static/Logo_5.png"/>
+        </div>
+        </header>
+        <div style="margin-left: 20px; margin-top:2%;">
+            <input type="button" name="tras_txt" class="btn btn-outline-success tras_txt_btn" value="Text">
+            <input type="button" name="up_file"  class="btn btn-outline-success up_file_btn" value="Upload">
+            <input type="button" name="voice_translation"  class="btn btn-outline-success voice_translate" enable="true" value="Interpreter">
+        </div>
+
+	<div class="row" style="margin-top:2%;">
+		<div class="col-md-12">
+			<div class="card ">
+				<!-- <div class="card-header bg-info" >
+				<h5 class="card-title text-light ">Language Translator</h5>
+				<input type="button" name="tras_txt" class="btn btn-outline-success tras_txt_btn" value="Text">
+				<input type="button" name="up_file"  class="btn btn-outline-success up_file_btn" value="Upload">
+				<input type="button" name="voice_translation"  class="btn btn-outline-success voice_translate" enable="true" value="Interpreter">
+				</div> -->
+					<div class="card-body">
+						<form name="form" id="form_data">
+							<div class="form-inline">
+								<select class="form-control" style="width: 48%;margin-left: 0%;" name="src_lang" id="src_lang">
+									<option value="detect" id="detect" selected> Detect Language(Experimental) </option>
+									<option value="ar" id="ar"> Arabic </option>
+									<option value="bn" id="bn"> Bengali </option>
+									<option value="zh" id="zn-CN"> Chinese </option>
+									<option value="en" id="en"> English </option>
+									<option value="fr" id="fr"> French </option>
+									<option value="hi" id="hi"> Hindi </option>
+									<option value="id" id="id"> Indonesian </option> 
+									<option value="pt" id="pt-PT"> Portuguese </option>
+									<option value="ru" id="ru"> Russian </option>
+									<option value="es" id="es"> Spanish </option>
+								</select>
+								<i class="material-icons btn swap_btn">swap_horiz</i>
+								<select class="form-control" style="width: 47.5%;margin-right: 0%;" name="dest_lang" id="dest_lang">
+									<option disabled selected> Select Language </option>
+									<option value="ar" id="ar" selected> Arabic </option>
+									<option value="bn" id="bn"> Bengali </option>
+									<option value="zh" id="zn-CN"> Chinese </option>
+									<option value="en" id="en"> English </option>
+									<option value="fr" id="fr"> French </option>
+									<option value="hi" id="hi"> Hindi </option>
+									<option value="id" id="id"> Indonesian </option> 
+									<option value="pt" id="pt-PT"> Portuguese </option>
+									<option value="ru" id="ru"> Russian </option>
+									<option value="es" id="es"> Spanish </option>
+								</select>
+							</div>
+							<div class="form-inline text_div" style="margin-top: 2%">
+								<textarea class="form-control ta_src_lang" style="width: 49.5%;margin-left: 0%;margin-right: 0.5%; font-family:Roboto; color: #160b0b;" rows="6" name="ta_src_lang" id="ta_src_lang" ></textarea>
+								
+								<i class="btn material-icons sm-5 mic voice_to_text" id="voice_to_text" title="Copy text">mic</i>
+								<textarea class="form-control ta_dest_lang" style="width: 49.5%;margin-right: 0%;  font-family:Roboto; color: #160b0b;" rows="6" name="ta_dest_lang" id="ta_dest_lang" readonly=readonly></textarea>
+								<span class="btn material-icons sm-5 volume_up" title="Read out Loud " id="volume_up">volume_up</span>
+                            	<i class="btn material-icons sm-5 content_copy" id="tooltip-copy" class="btn btn-danger" title="Copy text">content_copy</i>
+								<script>
+									$('.content_copy').click(function(){
+										$('.ta_dest_lang').removeAttr('disabled');  
+										$('.ta_dest_lang').select();
+										document.execCommand("copy");
+										$('.ta_dest_lang').attr('disabled','disabled');  
+									});
+								  </script>
+							</div>
+						</form>
+						<div class="upload_div" style="margin-top: 5%;">
+							<center>
+								<p style="color:black; font-weight: normal; font-size:25;">Choose Document</p>
+								<p style="color:#787878; font-weight: lighter; font-size:17;">Upload a .doc, .docx, .odf, .pdf, .ppt, .pptx, .ps, .rtf, .txt, .xls, or .xlsx</p>			
+								<form action = "/upload" method = "POST" enctype = "multipart/form-data">
+									<label class="btn btn-warning" for="up">
+										<input type = "file" id="up" name = "file" accept=".txt" class="btn btn-primary" onchange="form.submit()" style="display:none"/>
+									Browse your computer
+									</label>
+								 </form>
+							</center><br/>
+						</div>
+						<div class="speech_div" style="margin-top: 0%;">
+							<center>
+								<div class="btn-group btn-group-justified" style="margin-top: 5px;";>
+									<input type="button" name="speak_auto" class="btn btn-primary speak_auto_btn" value="Auto"> 
+									<input type="button" name="speak_manual"  class="btn btn-primary speak_manual_btn" value="Manual">
+									<br/>
+								</div>
+								<p id="speech_src" style="margin-left:5px;margin-top:20px;color:#787878;"></p>
+								<p id="speech_trg" style="margin-left:5px;margin-top:5px;color:#787878; position: relative;"></p>
+								<div class="speech_auto_btn " style="margin-top:100px;">
+									<i class="btn material-icons sm-5 auto_voice b2" id="voice_auto" title="Hold to speak">mic</i>
+								</div>
+								<div class="speech_manual_btn">
+									<style>
+										.button-wrapper {text-align:center;display:inline-block; margin:20px;}
+										button {padding:20px;}
+									</style>
+									<div class="play1">
+										<div class="button-wrapper">
+											<p style="color: #4285F4;" id="src_interpreter_lang"></p>
+											<button class="btn material-icons sm-5 speech_manual_btn_src b2" id="voice_manual_src" title="Hold to speak">mic</button>
+										</div>
+										<div class="button-wrapper play1">
+											<p style="color: #4285F4;" id="trg_interpreter_lang"></p>
+											<button class="btn material-icons sm-5 speech_manual_btn_trg b1" id="voice_manual_trg" title="Hold to speak">mic</button>
+										</div>
+									</div>
+									<div class="play2">
+										<!-- <script src="https://assets3.lottiefiles.com/packages/lf20_l6lzuovg.json"></script> -->
+										
+										<script src="/static/lottie-player.js"></script>
+										<lottie-player src="https://assets2.lottiefiles.com/packages/lf20_l6lzuovg.json"  background="transparent"  speed="1"  style="width: 100px; height: 100px;" loop autoplay ></lottie-player></body>
+									</div>
+								</div>
+							</center><br/>
+							</div>
+						<br/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+$(document).ready(function(){
+  
+    $(".upload_div").hide();
+	$(".tras_txt_btn").addClass("active")
+	$(".speech_div").hide();
+});
+
+$(document).on("click",".up_file_btn",function()
+{
+    $(".text_div").hide();
+	$(".speech_div").hide();
+	$(".upload_div").show();
+	$(".up_file_btn").addClass("active")
+	$(".tras_txt_btn").removeClass("active")
+	$(".voice_translate").removeClass("active")
+});
+
+$(document).on("click",".tras_txt_btn",function()
+{
+    $(".text_div").show();
+	$(".speech_div").hide();
+	$(".upload_div").hide();
+	$(".up_file_btn").removeClass("active")
+	$(".tras_txt_btn").addClass("active")
+	$(".voice_translate").removeClass("active")
+});
+
+$(document).on("click",".voice_translate",function()
+{
+    $(".text_div").hide();
+	$(".upload_div").hide();
+	$(".speech_div").show();
+	$(".up_file_btn").removeClass("active")
+	$(".tras_txt_btn").removeClass("active")
+	$(".voice_translate").addClass("active")
+	$(".speak_manual_btn").addClass("active")
+	$(".speech_manual_btn").show();
+	$(".auto_voice").hide();
+	$(".play1").show();
+	$(".play2").hide();
+	if($("#src_lang").val()=="detect")
+	{
+		$("#src_lang").val("en");
+	}
+	$("#dest_lang").focus();
+	$.ajax(
+	{
+		type: "POST",
+		url: "/text_ready",
+		data: JSON.stringify( {'src_lang': $('#src_lang').val(), 'dest_lang':$('#dest_lang').val()} ),
+		cache: false,
+		dataType: "json",
+		success: function(data)
+		{
+        		console.log("Response:"+JSON.stringify(data))
+				$('#src_interpreter_lang').empty()
+				$('#trg_interpreter_lang').empty()
+				$('#speech_src').empty()
+				$('#speech_trg').empty()
+				$('#src_interpreter_lang').append(data.src_interpreter_lang)
+				$('#trg_interpreter_lang').append(data.trg_interpreter_lang)
+				$('#speech_src').append(data.src_interpreter_greet)
+				$('#speech_trg').append(data.trg_interpreter_greet)
+				console.log($('#src_interpreter_lang').val())
+		}
+	});
+});
+
+var globalTimeout = null;  
+$('#ta_src_lang').keyup(function() 
+{
+  if (globalTimeout != null) {
+    clearTimeout(globalTimeout);
+  }
+  globalTimeout = setTimeout(function() {
+    globalTimeout = null;  
+	var form_data = $('#form_data').serializeArray().reduce(function (output, value) 
+	{
+        output[value.name] = value.value
+        return output
+	}, {})
+	console.log(form_data)
+	$.ajax(
+	{
+		type: "POST",
+		url: "/translate",
+		data: JSON.stringify(form_data),
+		cache: false,
+		dataType: "json",
+		success: function(data)
+		{
+			if(data=="")
+			{
+				alert("Somthing went wrong please try again later...")
+			}
+			else
+			{
+        		console.log("Response:"+JSON.stringify(data))
+				$('#ta_dest_lang').val(data.ta_dest_lang)
+			}
+		}
+	});
+  }, 700);  
+});  
+
+$(document).on('change',"#dest_lang", function() 
+{
+	var form_data = $('#form_data').serializeArray().reduce(function (output, value) 
+	{
+        output[value.name] = value.value
+        return output
+	}, {})
+	console.log(form_data)
+	$.ajax(
+	{
+		type: "POST",
+		url: "/translate",
+		data: JSON.stringify(form_data),
+		cache: false,
+		dataType: "json",
+		success: function(data)
+		{
+			if(data=="")
+			{
+				alert("Somthing went wrong please try again later...")
+			}
+			else
+			{
+        		console.log("Response:"+JSON.stringify(data))
+				$('#ta_dest_lang').val(data.ta_dest_lang)
+			}
+		}
+	});
+});
+
+$(document).on("click",".swap_btn",function()
+{	
+	src_lang=$("#src_lang").val()
+	dest_lang=$("#dest_lang").val()
+	ta_src_lang=$('#ta_src_lang').val()
+	ta_dest_lang=$('#ta_dest_lang').val()
+	toggle_src=$("#dest_lang").val(src_lang)
+	toggle_dest=$("#src_lang").val(dest_lang)
+	ta_toggle_src=$("#ta_src_lang").val(ta_dest_lang)
+	
+	$.ajax(
+	{
+		type: "POST",
+		url: "/translate",
+		data: JSON.stringify({ ta_src_lang: ta_toggle_src.val(),src_lang:toggle_src.val(),dest_lang:toggle_dest.val() }),
+		cache: false,
+		dataType: "json",
+		success: function(data)
+		{
+			if(data=="")
+			{
+				alert("Somthing went wrong please try again later...")
+			}
+			else
+			{
+        		console.log("Response:"+JSON.stringify(data));
+				$('#ta_dest_lang').val(data.ta_dest_lang);
+			}
+		}
+	});
+});
+
+$(document).on("click",".volume_up",function()
+{
+	var form_data = $('#form_data').serializeArray().reduce(function (output, value) 
+	{
+        output[value.name] = value.value
+        return output
+	}, {})
+	console.log(form_data)
+	$.ajax(
+	{
+		type: "POST",
+		url: "/text_to_speech",
+		data: JSON.stringify(form_data),
+		cache: false,
+		dataType: "json",
+		success: function(data)
+		{
+			if(data!="")
+			{
+        		console.log("Response:"+JSON.stringify(data))
+			}
+		}
+	});
+});
+
+$(document).on("click",".voice_to_text",function()
+{
+	var form_data = $('#form_data').serializeArray().reduce(function (output, value) 
+	{
+        output[value.name] = value.value
+        return output
+	}, {})
+	$.ajax(
+	{
+		type: "POST",
+		url: "/speechToText",
+		data: JSON.stringify(form_data),
+		cache: false,
+		dataType: "json",
+		success: function(data)
+		{
+        		console.log("Response:"+JSON.stringify(data));
+				$('#ta_src_lang').append(data.text_recognized);
+		}
+	});
+});
+
+$(document).on("click","#voice_manual_src",function()
+{
+	$(".play1").hide();
+	$(".play2").show();
+	$('#speech_src').empty();
+	$('#speech_trg').empty();
+	$('#speech_trg').append('Listening...');
+	var form_data = $('#form_data').serializeArray().reduce(function (output, value) 
+	{
+        output[value.name] = value.value
+        return output
+	}, {})
+	$.ajax(
+	{
+		type: "POST",
+		url: "/manual_speech_src",
+		data: JSON.stringify(form_data),
+		cache: false,
+		dataType: "json",
+		success: function(data)
+		{
+        		console.log("Response:"+JSON.stringify(data));
+                $(".play1").show();
+				$(".play2").hide();
+				$('#speech_trg').empty();
+				$('#speech_trg').append(data.text_recognized);
+
+		}
+	});
+});
+
+$(document).on("click","#voice_manual_trg",function()
+{
+	$(".play1").hide();
+	$(".play2").show();
+	$('#speech_src').empty();
+	$('#speech_trg').empty();
+	$('#speech_trg').append('Listening...');
+	var form_data = $('#form_data').serializeArray().reduce(function (output, value) 
+	{
+        output[value.name] = value.value
+        return output
+	}, {})
+	$.ajax(
+	{
+		type: "POST",
+		url: "/manual_speech_trg",
+		data: JSON.stringify(form_data),
+		cache: false,
+		dataType: "json",
+		success: function(data)
+		{
+        		console.log("Response:"+JSON.stringify(data));
+                $(".play1").show();
+				$(".play2").hide();
+				$('#speech_trg').empty();
+				$('#speech_trg').append(data.text_recognized);
+		}
+	});
+});
+
+
+$(document).on("click",".speak_auto_btn",function()
+{
+	$(".auto_voice").show();
+	$(".speech_manual_btn").hide();
+	$(".speak_auto_btn").addClass("active");
+	$(".speak_manual_btn").removeClass("active");
+});
+
+$(document).on("click",".speak_manual_btn",function()
+{
+	$(".auto_voice").hide();
+	$(".speech_manual_btn").show();
+	$(".speak_auto_btn").removeClass("active");
+	$(".speak_manual_btn").addClass("active");
+});
+
+$(document).on("click",".play2",function()
+{
+	$('#speech_trg').empty()
+	$(".play2").hide();
+	$(".play1").show();
+});
+</script>
+</html>

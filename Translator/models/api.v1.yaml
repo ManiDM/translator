@@ -1,0 +1,9 @@
+title: api
+type: object
+properties:
+  id:
+    type: string
+x-examples:
+  example-1:
+    id: string
+description: This is a free api translator.

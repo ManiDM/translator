@@ -1,0 +1,92 @@
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+      <title>API</title>
+        <link rel = "icon" href = "https://img.icons8.com/pastel-glyph/256/000000/translation.png" type = "image/x-icon">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <style>
+        #api_key_copy {
+          width: 100px;
+        }
+        .avatar {
+          border-radius: 50%; 
+          margin-right:10px; 
+          margin-top: 10px; 
+          float: right;
+          }
+        .logo{
+            margin-left:10px;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .doc{
+            margin-right:10px;
+            margin-top: 10px;
+            float: right;
+        }
+      </style>
+    </head>
+<body>
+  <div style="height:50px; top:0%; position: fixed; width: 100%; z-index:1; background-color: white;">
+          <a href="/"><img src="{{ url_for('static', filename='Logo_5.png') }}" class="logo"/></a>
+          <img src="{{avatar}}" class="avatar" height="40px",width="40px"/>
+          <a class ="btn btn-outline-primary doc" href="https://documenter.getpostman.com/view/14757868/TzJx7w2e">Documentation</a>	
+  </div>
+  <!-- <div style="height:50px; margin-top:8px; position: sticky;">
+    <a href="/"><img src="{{ url_for('static', filename='Logo_5.png') }}" style="margin-left:10px;margin-top: 0px; max-width: 100%;max-height: 100%; position: sticky;"/></a>
+    <img src="{{avatar}}" class="avatar" height="40px",width="40px"/>
+    <a class ="btn btn-outline-primary" href="https://documenter.getpostman.com/view/14757868/TzJx7w2e" style="margin-right:10px; margin-top:10px; float: right; position: sticky;">Documentation</a>
+    <a href="/api" class = "btn btn-outline-primary" style="margin-right:10px; margin-top:10px; float: right;position: sticky;">Get API</a>
+  </div> -->
+<br/><br/>
+<div class="card" style="margin: 2%; position: relative;">
+  <div class="card-body">
+  <div class="row" style="margin: 2%;">
+    <div class="col-md-6">
+      <h3>Your API key</h3>
+      <div class="row mb-3 mt-3">
+        <div class="input-group col-10">
+          <input type="text" value={{api_key}} id="api_key_copy" readonly="readonly" class="form-control" />
+          <div class="input-group-append">
+            <i class="btn material-icons content_copy btn-outline-success" title="Copy text" onclick="copyText()">content_copy</i>
+          </div>
+        </div>
+      </div>
+      <h3>API Clients</h3>
+      <p>We have prepared API clients for the programming languages listed below. Please follow the link and you will find the instructions how to setup an API client.</p>
+      <ul>
+        <li>C#</li>
+        <li>Go</li>
+        <li>Javascript</li>
+        <li>Java</li>
+        <li>C</li>
+        <li>NodeJs</li>
+        <li>Php</li>
+        <li>Python</li>
+        <li>Ruby</li>
+        <li>Swipt</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+</div>
+
+</body>
+<script>
+$(document).ready(function()
+{
+  $(".api_token").val(data.api_generated);
+});
+
+  function copyText() {
+    var copyText = document.getElementById("api_key_copy");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999)
+    document.execCommand("copy");
+    alert("Copied the text: " + copyText.value);
+  }
+  </script>
+</html>
